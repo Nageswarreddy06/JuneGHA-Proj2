@@ -1,0 +1,22 @@
+{
+  "name": "junegha-proj2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Testing project\" && exit 0",
+    "build": "mkdir dist && echo \"Build output\" > dist/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nageswarreddy06/JuneGHA-Proj2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Nageswarreddy06/JuneGHA-Proj2/issues"
+  },
+  "homepage": "https://github.com/Nageswarreddy06/JuneGHA-Proj2#readme"
+}

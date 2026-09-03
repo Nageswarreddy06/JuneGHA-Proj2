@@ -12,29 +12,45 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Install Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: '20'
+          node-version: '24'
       - name: install dependencies
-        run: npm install
-      - name: Run tests
-        run: npm test --if-present
+        run: npm ci
+      - name: Run Tests
+        run: npm test
 
-  deploy:
+  build:
     needs: test
     runs-on: ubuntu-latest
     steps:
       - name: Get Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
       - name: Install Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
-          node-version: '20'
+          node-version: '24'
       - name: install dependencies
-        run: npm install
+        run: npm ci
       - name: Build project
-        run: npm run build --if-present
+        run: npm run build
+      - name: upload build artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: dist-file
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get build artifacts
+        uses: actions/download-artifact@v8
+        with:
+          name: dist-file
+      - name: list file
+        run: ls -la
       - name: Deploy
-        run: echo "deploying application"
+        run: echo "Deploying............"
